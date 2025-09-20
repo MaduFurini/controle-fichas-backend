@@ -13,7 +13,19 @@ return new class extends Migration
     {
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('community_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('event_id');
+            $table->date('date');
+            $table->time('entry_time');
+            $table->time('exit_time');
+            $table->float('entry_value')->nullable();
+            $table->float('exit_value')->nullable();
             $table->timestamps();
+
+            $table->foreign('community_id')->references('id')->on('communities');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('event_id')->references('id')->on('events');
         });
     }
 

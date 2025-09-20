@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('community_id');
+            $table->string('name');
+            $table->string('description')->nullable();
             $table->timestamps();
+
+            $table->foreign('community_id')->references('id')->on('communities');
         });
     }
 

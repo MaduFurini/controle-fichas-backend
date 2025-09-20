@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('personal_access_tokens', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('community_id');
+            $table->integer('reference_id');
+            $table->longText('token');
+            $table->dateTime('expires_at');
             $table->timestamps();
+
+            $table->foreign('community_id')->references('id')->on('communities');
         });
     }
 

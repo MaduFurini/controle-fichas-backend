@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('community_id');
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->enum('status', [0, 1])->default(0);
             $table->timestamps();
+
+            $table->foreign('community_id')->references('id')->on('communities');
         });
     }
 

@@ -13,7 +13,14 @@ return new class extends Migration
     {
         Schema::create('equipments', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('community_id');
+            $table->string('name');
+            $table->string('identification_tag');
+            $table->string('description')->nullable();
+            $table->enum('status', [0, 1])->default(1);
             $table->timestamps();
+
+            $table->foreign('community_id')->references('id')->on('communities');
         });
     }
 

@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('event_products', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('event_id');
+            $table->unsignedBigInteger('product_id');
+            $table->float('price');
+            $table->string('observation')->nullable();
+            $table->enum('status', [0, 1])->default(1);
             $table->timestamps();
+
+            $table->foreign('event_id')->references('id')->on('events');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

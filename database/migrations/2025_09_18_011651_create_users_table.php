@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('community_id');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->longText('password');
+            $table->string('recovery_code')->nullable();
+            $table->enum('access_type', ['parish_admin', 'parish_community', 'operator', 'unknown'])->default('unknown');
+            $table->enum('status', [0, 1])->default(1);
             $table->timestamps();
+
+            $table->foreign('community_id')->references('id')->on('communities');
         });
     }
 

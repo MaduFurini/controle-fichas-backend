@@ -13,7 +13,16 @@ return new class extends Migration
     {
         Schema::create('reports', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('community_id');
+            $table->unsignedBigInteger('event_id');
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->longText('file');
+            $table->date('date');
             $table->timestamps();
+
+            $table->foreign('community_id')->references('id')->on('communities');
+            $table->foreign('event_id')->references('id')->on('events');
         });
     }
 
