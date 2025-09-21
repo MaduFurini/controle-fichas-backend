@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('community_id');
             $table->integer('reference_id');
+            $table->string('module');
             $table->longText('token');
             $table->dateTime('expires_at');
             $table->timestamps();

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('community_id');
             $table->string('name');
+            $table->string('code');
             $table->string('email')->unique();
             $table->longText('password');
             $table->string('recovery_code')->nullable();

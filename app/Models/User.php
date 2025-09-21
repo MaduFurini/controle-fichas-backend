@@ -14,6 +14,7 @@ class User extends Model
     protected $fillable = [
         'community_id',
         'name',
+        'code',
         'email',
         'password',
         'recovery_code',
