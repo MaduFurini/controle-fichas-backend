@@ -13,6 +13,7 @@ class Community extends Model
 
     protected $fillable = [
         'name',
+        'type',
         'street',
         'number',
         'zip_code',

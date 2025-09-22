@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('communities', function (Blueprint $table) {
             $table->id();
             $table->string('name', [255]);
+            $table->enum('type', ['parish', 'community', 'unknown'])->default('unknown');
             $table->string('street', [255]);
             $table->integer('number')->nullable();
             $table->string('zip_code');
