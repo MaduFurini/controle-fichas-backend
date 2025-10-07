@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Order extends Model
 {
@@ -12,6 +13,7 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
+        'uuid',
         'community_id',
         'payment_type_id',
         'session_id',
@@ -20,6 +22,17 @@ class Order extends Model
         'date',
         'status',
     ];
+
+    protected $hidden = ['id'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->uuid = (string) Str::uuid();
+        });
+    }
 
     public function community()
     {

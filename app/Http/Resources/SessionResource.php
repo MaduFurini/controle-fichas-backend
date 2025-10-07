@@ -16,22 +16,22 @@ class SessionResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'            => $this->id,
+            'uuid'            => $this->uuid,
             'community'     =>
             [
-                'id'    => $this->community->id,
+                'uuid'    => $this->community->uuid,
                 'name'  => $this->community->name,
             ],
             'user'          =>
             [
-                'id'    => $this->user->id,
+                'uuid'    => $this->user->uuid,
                 'code'  => $this->user->code,
                 'name'  => $this->user->name,
             ],
             'event'         =>
             [
-                'id'    => $this->event->id,
-                'name'  => $this->event->id
+                'uuid'    => $this->event->uuid,
+                'name'  => $this->event->name
             ],
             'date'          => DateTimeHelper::dateFormat($this->date),
             'entry_time'    => DateTimeHelper::timeFormat($this->entry_time),

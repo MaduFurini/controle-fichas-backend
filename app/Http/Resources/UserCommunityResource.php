@@ -16,15 +16,15 @@ class UserCommunityResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'            => $this->id,
+            'uuid'            => $this->uuid,
             'community'     =>
             [
-                'id'    => $this->community->id,
+                'uuid'    => $this->community->uuid,
                 'name'  => $this->community->name,
             ],
             'user'          =>
             [
-                'id'    => $this->user->id,
+                'uuid'    => $this->user->uuid,
                 'code'  => $this->user->code,
                 'name'  => $this->user->name,
             ],

@@ -12,6 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('communities', function (Blueprint $table) {
+            $table->uuid('uuid')->unique();
             $table->id();
             $table->string('name', [255]);
             $table->string('street', [255]);

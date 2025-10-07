@@ -16,16 +16,16 @@ class EventProductResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'            => $this->id,
+            'uuid'            => $this->uuid,
             'event'         =>
             [
-                'id'    => $this->event->id,
-                'name'  => $this->event->id
+                'uuid'    => $this->event->uuid,
+                'name'  => $this->event->name
             ],
             'product'       =>
             [
-                'id'    => $this->product->id,
-                'name'  => $this->product->id
+                'uuid'    => $this->product->uuid,
+                'name'  => $this->product->name
             ],
             'price'         => $this->price,
             'observation'   => $this->observation,

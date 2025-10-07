@@ -16,13 +16,13 @@ class PersonalAccessTokenResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'            => $this->id,
+            'uuid'            => $this->uuid,
             'community'     =>
             [
-                'id'    => $this->community->id,
+                'uuid'    => $this->community->uuid,
                 'name'  => $this->community->name,
             ],
-            'reference_id'  => $this->reference_id,
+            'reference_uuid'  => $this->reference_uuid,
             'module'        => $this->module,
             'token'         => $this->token,
             'expires_at'    => DateTimeHelper::dateTimeToMinus3Format($this->expires_at),

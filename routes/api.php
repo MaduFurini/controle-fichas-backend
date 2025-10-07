@@ -28,11 +28,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/login', [LoginController::class, 'login']);
-Route::post('/generateToken', [LoginController::class, 'generateToken']);
-Route::post('/validateToken', [LoginController::class, 'validateToken']);
+Route::middleware('throttle:60,1')->group(function () {
+    Route::post('/login', [LoginController::class, 'login']);
+    Route::post('/generateToken', [LoginController::class, 'generateToken']);
+    Route::post('/validateToken', [LoginController::class, 'validateToken']);
+});
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware(['auth:sanctum', 'throttle:60,1'])->group(function () {
     Route::prefix('/communities')->group(function () {
         Route::get('/', [CommunityController::class, 'index']);
         Route::post('/', [CommunityController::class, 'store']);

@@ -16,15 +16,15 @@ class ReportResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'            => $this->id,
+            'uuid'            => $this->uuid,
             'community'     =>
             [
-                'id'    => $this->community->id,
+                'uuid'    => $this->community->uuid,
                 'name'  => $this->community->name,
             ],
             'event'         =>
             [
-                'id'    => $this->event->id,
+                'uuid'    => $this->event->uuid,
                 'name'  => $this->event->id
             ],
             'name'          => $this->name,
