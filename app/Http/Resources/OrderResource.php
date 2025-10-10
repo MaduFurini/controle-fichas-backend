@@ -16,20 +16,20 @@ class OrderResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'                => $this->id,
+            'uuid'                => $this->uuid,
             'community'         =>
             [
-                'id'            => $this->community->id,
+                'uuid'            => $this->community->uuid,
                 'name'          => $this->community->name,
             ],
             'payment_type'      =>
             [
-                'id'            => $this->paymentType->id,
+                'uuid'            => $this->paymentType->uuid,
                 'name'          => $this->paymentType->name,
             ],
             'session'           =>
             [
-                'id'            => $this->session->id,
+                'uuid'            => $this->session->uuid,
                 'user_code'     => $this->session->user->code,
                 'user_name'     => $this->session->user->name,
                 'date'          => DateTimeHelper::dateFormat($this->session->date),

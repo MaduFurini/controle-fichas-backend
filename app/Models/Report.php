@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Report extends Model
 {
@@ -12,6 +13,7 @@ class Report extends Model
     protected $table = 'reports';
 
     protected $fillable = [
+        'uuid',
         'community_id',
         'event_id',
         'name',
@@ -19,6 +21,17 @@ class Report extends Model
         'file',
         'date',
     ];
+
+    protected $hidden = ['id'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->uuid = (string) Str::uuid();
+        });
+    }
 
     public function community()
     {

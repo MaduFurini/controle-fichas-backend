@@ -16,13 +16,13 @@ class OrderProductResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id'                => $this->id,
+            'uuid'                => $this->uuid,
             'event_product'     =>
             [
-                'id'            => $this->eventProduct->id,
-                'event_id'      => $this->eventProduct->event->id,
+                'uuid'            => $this->eventProduct->uuid,
+                'event_uuid'      => $this->eventProduct->event->uuid,
                 'event_name'    => $this->eventProduct->event->name,
-                'product_id'    => $this->eventProduct->product->id,
+                'product_uuid'    => $this->eventProduct->product->uuid,
                 'product_name'  => $this->eventProduct->product->name,
             ],
             'code'              => $this->code,

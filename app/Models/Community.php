@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Community extends Model
 {
@@ -12,9 +13,12 @@ class Community extends Model
     protected $table = 'communities';
 
     protected $fillable = [
+        'uuid',
         'name',
         'type',
         'street',
+        'city',
+        'state',
         'number',
         'zip_code',
         'email_responsible',
@@ -22,4 +26,15 @@ class Community extends Model
         'image',
         'status',
     ];
+
+    protected $hidden = ['id'];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->uuid = (string) Str::uuid();
+        });
+    }
 }

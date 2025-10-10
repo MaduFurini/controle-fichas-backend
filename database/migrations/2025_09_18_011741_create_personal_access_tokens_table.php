@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('personal_access_tokens', function (Blueprint $table) {
+            $table->uuid('uuid')->unique();
             $table->id();
             $table->unsignedBigInteger('community_id');
-            $table->integer('reference_id');
+            $table->uuid('reference_uuid');
             $table->string('module');
             $table->longText('token');
             $table->dateTime('expires_at');
