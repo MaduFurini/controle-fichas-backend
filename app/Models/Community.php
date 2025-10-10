@@ -16,6 +16,8 @@ class Community extends Model
         'uuid',
         'name',
         'street',
+        'city',
+        'state',
         'number',
         'zip_code',
         'email_responsible',
