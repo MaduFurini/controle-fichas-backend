@@ -15,7 +15,7 @@ O backend fornece os seguintes serviços:
 - Registro de **vendas de fichas**  
 - Controle de **caixa** (abertura, fechamento, movimentações)  
 - Geração de **relatórios** (por evento, data, produto)  
-- Integrações diversas (exportação PDF / CSV, possíveis extensões com IA)  
+- Integrações diversas (exportação PDF / CSV)  
 
 Ele se comunica tanto com o **frontend web** quanto com o **aplicativo mobile**, atuando como núcleo do sistema.
 
