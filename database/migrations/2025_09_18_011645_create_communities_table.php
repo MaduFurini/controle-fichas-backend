@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('communities', function (Blueprint $table) {
             $table->uuid('uuid')->unique();
             $table->id();
+            $table->unsignedBigInteger('parish_id')->nullable();
             $table->string('name', 255);
             $table->enum('type', ['parish', 'community', 'unknown'])->default('unknown');
             $table->string('street', 255);
@@ -24,7 +25,7 @@ return new class extends Migration
             $table->string('email_responsible');
             $table->string('phone');
             $table->longText('image')->nullable();
-            $table->enum('status', [0, 1])->default(1);
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

@@ -25,6 +25,10 @@ class Product extends Model
 
     protected $hidden = ['id'];
 
+    protected $casts = [
+        'status' => 'boolean',
+    ];
+
     protected static function boot()
     {
         parent::boot();

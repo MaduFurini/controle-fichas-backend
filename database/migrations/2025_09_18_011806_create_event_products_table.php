@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->float('price');
             $table->string('observation')->nullable();
-            $table->enum('status', [0, 1])->default(1);
+            $table->boolean('status')->default(true);
             $table->timestamps();
 
             $table->foreign('event_id')->references('id')->on('events');

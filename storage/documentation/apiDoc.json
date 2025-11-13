@@ -1,0 +1,48 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Sacramentum",
+        "version": "1.0.0",
+        "description": "Documentação da API de gerenciamento de festividades"
+    },  "paths": {
+    "/api/communities": {
+        "post": {
+            "summary": "Cria uma nova comunidade",
+            "tags": ["Comunidades"],
+            "requestBody": {
+                "required": true,
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "parish_id": { "type": "integer", "example": 1 },
+                                "name": { "type": "string", "example": "Comunidade São José" },
+                                "type": { "type": "string", "example": "community" },
+                                "street": { "type": "string", "example": "Rua das Palmeiras" },
+                                "city": { "type": "string", "example": "São Paulo" },
+                                "state": { "type": "string", "example": "SP" },
+                                "number": { "type": "integer", "example": 120 },
+                                "zip_code": { "type": "string", "example": "04567-890" },
+                                "email_responsible": { "type": "string", "example": "responsavel@saojose.com" },
+                                "phone": { "type": "string", "example": "(11) 99876-5432" },
+                                "status": { "type": "boolean", "example": true }
+                            },
+                            "required": ["parish_id", "name", "type", "street", "city", "state", "zip_code", "email_responsible", "phone", "status"]
+                        }
+                    }
+                }
+            },
+            "responses": {
+                "201": {
+                    "description": "Comunidade criada com sucesso"
+                },
+                "422": {
+                    "description": "Erro de validação"
+                }
+            }
+        }
+    }
+}
+
+}

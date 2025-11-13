@@ -29,26 +29,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Rotas testadas e funcionando
 Route::middleware('throttle:60,1')->group(function () {
     Route::post('/generateToken', [AuthController::class, 'generateToken']);
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'login']); //
     Route::post('/validate-token', [AuthController::class, 'validateToken']);
-    Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::middleware(['auth:sanctum'])->group(function () {
+        Route::post('/logout', [AuthController::class, 'logout']); //
+    });
 });
 
 Route::middleware(['auth:sanctum', 'throttle:60,1'])->group(function () {
     Route::prefix('/communities')->group(function () {
-        Route::get('/', [CommunityController::class, 'index']);
-        Route::post('/', [CommunityController::class, 'store']);
-        Route::patch('/{id}', [CommunityController::class, 'update']);
-        Route::delete('/{id}', [CommunityController::class, 'destroy']);
+        Route::get('/', [CommunityController::class, 'index']); //
+        Route::post('/', [CommunityController::class, 'store']); //
+        Route::patch('/{id}', [CommunityController::class, 'update']); //
+        Route::delete('/{id}', [CommunityController::class, 'destroy']); //
     });
 
     Route::prefix('/users')->group(function () {
-        Route::get('/', [UserController::class, 'index']);
-        Route::post('/', [UserController::class, 'store']);
-        Route::patch('/{id}', [UserController::class, 'update']);
-        Route::delete('/{id}', [UserController::class, 'destroy']);
+        Route::get('/', [UserController::class, 'index']); //
+        Route::post('/', [UserController::class, 'store']); //
+        Route::patch('/{id}', [UserController::class, 'update']); //
+        Route::delete('/{id}', [UserController::class, 'destroy']); //
     });
 
     Route::prefix('/userCommunities')->group(function () {

@@ -121,7 +121,7 @@ class UserService
         $hasRelationship = RelationshipChecker::hasRelationship('user_id', $user->id);
 
         if ($hasRelationship) {
-            $user->update(['status', 0]);
+            $user->update(['status' => false]);
             $user->save();
 
             $message = 'O usuário possui relação com outros itens, portanto não pode ser excluído, apenas inativado';

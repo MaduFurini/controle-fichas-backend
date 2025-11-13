@@ -21,7 +21,7 @@ return new class extends Migration
             $table->longText('password');
             $table->string('recovery_code')->nullable();
             $table->enum('access_type', ['general_admin', 'parish_admin', 'parish_community', 'operator', 'unknown'])->default('unknown');
-            $table->enum('status', [0, 1])->default(1);
+            $table->boolean('status')->default(true);
             $table->timestamps();
 
             $table->foreign('community_id')->references('id')->on('communities');

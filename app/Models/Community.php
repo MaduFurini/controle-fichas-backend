@@ -14,6 +14,7 @@ class Community extends Model
 
     protected $fillable = [
         'uuid',
+        'parish_id',
         'name',
         'type',
         'street',
@@ -28,6 +29,10 @@ class Community extends Model
     ];
 
     protected $hidden = ['id'];
+
+    protected $casts = [
+        'status' => 'boolean',
+    ];
 
     protected static function boot()
     {

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->date('start_date');
             $table->date('end_date');
-            $table->enum('status', [0, 1])->default(1);
+            $table->boolean('status')->default(true);
             $table->timestamps();
 
             $table->foreign('community_id')->references('id')->on('communities');

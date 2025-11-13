@@ -111,7 +111,7 @@ class CommunityService
         $hasRelationship = RelationshipChecker::hasRelationship('community_id', $community->id);
 
         if ($hasRelationship) {
-            $community->update(['status', 0]);
+            $community->update(['status' => false]);
             $community->save();
 
             $message = 'A comunidade possui relação com outros itens, portanto não pode ser excluída, apenas inativada';

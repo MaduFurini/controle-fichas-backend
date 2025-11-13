@@ -15,24 +15,19 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
 
+        if (!isset($credentials['email']) || !isset($credentials['password'])) {
+            return response()->json(['message' => 'Credenciais não informadas'], 401);
+        }
+
         $user = User::where('email', $credentials['email'])->first();
 
         if (!$user || !Hash::check($credentials['password'], $user->password)) {
-            return response()->json([
-                'message' => 'Credenciais inválidas.'
-            ], 401);
+            return response()->json(['message' => 'Credenciais inválidas.'], 401);
         }
 
-        $token = base64_encode(Str::random(60));
-        $expiresAt = Carbon::now()->addHour();
+        PersonalAccessToken::where('tokenable_id', $user->id)->delete();
 
-        PersonalAccessToken::create([
-            'community_id' => $user->community_id,
-            'reference_uuid' => $user->uuid,
-            'module' => 'auth',
-            'token' => $token,
-            'expires_at' => $expiresAt,
-        ]);
+        $token = $user->createToken('auth_token')->plainTextToken;
 
         return response()->json([
             'token' => $token,
@@ -65,12 +60,7 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $authHeader = $request->header('Authorization');
-
-        if ($authHeader && str_starts_with($authHeader, 'Bearer ')) {
-            $token = substr($authHeader, 7);
-            PersonalAccessToken::where('token', $token)->delete();
-        }
+        $request->user()->currentAccessToken()->delete();
 
         return response()->json(['message' => 'Logout realizado com sucesso.']);
     }

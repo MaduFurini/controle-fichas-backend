@@ -14,16 +14,14 @@ return new class extends Migration
         Schema::dropIfExists('personal_access_tokens');
 
         Schema::create('personal_access_tokens', function (Blueprint $table) {
-            $table->uuid('uuid')->unique();
             $table->id();
-            $table->unsignedBigInteger('community_id');
-            $table->uuid('reference_uuid');
-            $table->string('module');
-            $table->longText('token');
-            $table->dateTime('expires_at');
+            $table->morphs('tokenable');
+            $table->string('name');
+            $table->string('token', 64)->unique();
+            $table->text('abilities')->nullable();
+            $table->timestamp('last_used_at')->nullable();
+            $table->timestamp('expires_at')->nullable();
             $table->timestamps();
-
-            $table->foreign('community_id')->references('id')->on('communities');
         });
     }
 

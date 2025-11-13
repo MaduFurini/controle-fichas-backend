@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->float('price');
             $table->longText('image')->nullable();
-            $table->enum('status', [0, 1])->default(1);
+            $table->boolean('status')->default(true);
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories');

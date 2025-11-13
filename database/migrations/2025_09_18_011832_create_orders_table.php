@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('code');
             $table->float('total_value');
             $table->date('date');
-            $table->enum('status', [0, 1])->default(1);
+            $table->boolean('status')->default(true);
             $table->timestamps();
 
             $table->foreign('community_id')->references('id')->on('communities');

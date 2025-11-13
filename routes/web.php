@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +16,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/api/docs', function () {
+    return view('documentation/apiDoc');
+});
+
+Route::get('/api/docs/json', function () {
+    $path = base_path('storage/documentation/apiDoc.json');
+
+    if (!file_exists($path)) {
+        return response()->json(['message' => 'Documento não encontrado'], 404);
+    }
+
+    return Response::file($path, [
+        'Content-Type' => 'application/json',
+    ]);
 });
