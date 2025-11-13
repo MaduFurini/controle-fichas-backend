@@ -15,7 +15,7 @@ class PersonalAccessToken extends Model
     protected $fillable = [
         'uuid',
         'community_id',
-        'reference_id',
+        'reference_uuid',
         'module',
         'token',
         'expires_at',
