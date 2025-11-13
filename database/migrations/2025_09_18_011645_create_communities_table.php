@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('communities', function (Blueprint $table) {
             $table->uuid('uuid')->unique();
             $table->id();
-            $table->string('name', [255]);
+            $table->string('name', 255);
             $table->enum('type', ['parish', 'community', 'unknown'])->default('unknown');
-            $table->string('street', [255]);
-            $table->string('city', [255]);
-            $table->string('state', [2]);
+            $table->string('street', 255);
+            $table->string('city', 255);
+            $table->string('state', 2);
             $table->integer('number')->nullable();
             $table->string('zip_code');
             $table->string('email_responsible');

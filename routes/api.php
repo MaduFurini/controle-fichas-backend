@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\EquipmentController;
@@ -29,9 +30,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('throttle:60,1')->group(function () {
-    Route::post('/login', [LoginController::class, 'login']);
-    Route::post('/generateToken', [LoginController::class, 'generateToken']);
-    Route::post('/validateToken', [LoginController::class, 'validateToken']);
+    Route::post('/generateToken', [AuthController::class, 'generateToken']);
+    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/validate-token', [AuthController::class, 'validateToken']);
+    Route::post('/logout', [AuthController::class, 'logout']);
 });
 
 Route::middleware(['auth:sanctum', 'throttle:60,1'])->group(function () {
